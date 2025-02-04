@@ -10,10 +10,10 @@ Route::get('/', function () {
 });
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store')->middleware('auth');
 Route::get('/posts/{id}', [PostController::class, 'show'])->name('post.show');
 
 Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -21,6 +21,3 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/dashboard', function() {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
